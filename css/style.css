@@ -1,0 +1,363 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Vazirmatn";
+}
+
+:root {
+    --background-gradient: linear-gradient(167.44deg, #08244F 0%, #134CB5 47.38%, #0B42AB 100%);
+    --text-color: #ffffff;
+}
+
+body {
+    background: var(--background-gradient);
+    font-family: 'Arial', sans-serif;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    min-height: 100vh;
+}
+
+/* Fixed Header */
+.weather-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: var(--bs-primary); /* Use the theme color */
+    color: white;
+    padding: 15px 0;
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+.current-info {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    direction: rtl;
+    border: none;
+    outline: none;
+    background: #ebfffc;
+    color: #555;
+    padding: 10px 25px;
+    height: 40px;
+    border-radius: 20px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.search-bar button {
+    border: none;
+    outline: none;
+    background: #ebfffc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+/* Weather Icon and Temperature Section */
+.weather-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #333; /* Darker text for readability */
+    padding: 20px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.weather-image {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 15px;
+    animation: icon-move 2s infinite;
+}
+
+.temperature {
+    font-size: 3em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.location-name {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+/* Details (Humidity and Wind) */
+.details {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detail-item img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+}
+
+.humidity-data,
+.wind-data {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 5px 0;
+}
+
+.detail-item p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #666; /* Lighter text color */
+}
+
+/* Weather Table Section with Dark Background */
+.weather-table {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background for table */
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+.weather-table table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    color: white;
+}
+
+.weather-table tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.weather-table th,
+.weather-table td {
+    padding: 10px;
+}
+
+.weather-table th {
+    font-size: 1.2em;
+    color: #ccc; /* Lightened header color */
+}
+
+.weather-table td img {
+    width: 48px;
+    height: 48px;
+}
+
+.error-message {
+    display: none; /* Initially hidden */
+    font-size: 1em;
+    color: #ff6666;
+    margin-top: 10px;
+}
+
+/* Add padding to the body to avoid overlap */
+body {
+    padding-top: 100px; /* Adjust this based on the header height */
+}
+
+
+
+
+
+.forecast-table {
+    width: 100%;
+    margin-top: 15px;
+    color: #ddd;
+    border-collapse: collapse;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.forecast-table th,
+.forecast-table td {
+    padding: 12px;
+    border-bottom: 1px solid #888;
+    text-align: center;
+}
+
+.weather-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    padding: 20px;
+   
+    margin-top: 20px;
+    width: 100%;
+    max-width: 400px; /* Adjust width as needed */
+}
+
+.weather-image {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 15px;
+    animation: icon-move 2s infinite;
+}
+
+@keyframes icon-move {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+}
+
+.temperature {
+    font-size: 3em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.location-name {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+
+.details {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.detail-item img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+}
+
+.humidity-data,
+.wind-data {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 5px 0;
+}
+
+.detail-item p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+/* Forecast Section */
+.forecast-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: #333; /* Dark background for contrast */
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Forecast Link */
+.forecast-section a {
+    font-size: 1.2em;
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 10px;
+    flex: 1;
+    font-weight: bold;
+}
+
+.forecast-section a:hover {
+    color: #ffc107; /* Highlight color on hover */
+}
+
+
+.forecast-section .fa-calendar,
+.forecast-section img {
+    font-size: 1.4em;
+    margin-left: 10px;
+}
+
+.forecast-section img {
+    width: 24px;
+    height: 24px;
+}
+
+
+
+
+
+
+
+
+
+@media
+ (
+max-width
+: 
+767px
+) {
+    
+.weather-header
+ {
+        
+position
+: fixed;
+        
+top
+: 
+0
+;
+        
+left
+: 
+0
+;
+    }
+
+    
+/* Add padding to body to prevent content from being hidden behind the fixed header */
+
+    
+body
+ {
+        
+padding-top
+: 
+70px
+; 
+/* Adjust according to header height */
+
+    }
+}

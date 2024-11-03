@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather app</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body id="main-body">
+    <header class="weather-header">
+        <h2 class="current-info">وضعیت آب و هوا</h2>
+        <div class="search-bar">
+            <input type="text" placeholder="جست و جوی شهر">
+            <button><img src="images/search.png"></button>
+        </div>
+        <div class="error-message">
+            <h1>شهر پیدا نشد</h1>
+        </div>
+    </header>
+    
+    <!-- Weather Content -->
+  
+    <div class="weather-content">
+        <div class="forecast-section">
+            <a href="#"> پیش بینی روز های آینده</a>
+            <i class="fa fa-calendar"></i>
+            <img src="images/calendar.svg" alt="">
+        </div>
+        <table class="forecast-table">
+            <thead>
+                <tr>
+                    <td>day</td>
+                    <td>weather</td>
+                    <td>max</td>
+                    <td>min</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="#" id="day1"></a>چهارشنبه</td>
+                    <td><img src="images/Cloud little rain.jpg" alt=""></td>
+                    <td>18° حداکثر</td>
+                    <td>11° حداقل</td>
+                </tr>
+                <tr>
+                    <td><a href="#" id="day2"></a>پنج شنبه</td>
+                    <td><img src="images/Cloud mid rain.jpg" alt=""></td>
+                    <td>15° حداکثر</td>
+                    <td>10° حداقل</td>
+                </tr>
+                <tr>
+                    <td><a href="#" id="day3"></a>جمعه</td>
+                    <td><img src="images/Cloud 3 zap.jpg" alt=""></td>
+                    <td>12° حداکثر</td>
+                    <td>7° حداقل</td>
+                </tr>
+                <tr>
+                    <td><a href="#" id="day4"></a>شنبه</td>
+                    <td><img src="images/Cloud angled rain.jpg" alt=""></td>
+                    <td>9° حداکثر</td>
+                    <td>5° حداقل</td>
+                </tr>
+                <tr>
+                    <td><a href="#" id="day5"></a>یک شنبه</td>
+                    <td><img src="images/Sun cloud mid rain.jpg" alt=""></td>
+                    <td>14° حداکثر</td>
+                    <td>11° حداقل</td>
+                </tr>
+                <tr>
+                    <td><a href="#" id="day6"></a>دوشنبه</td>
+                    <td><img src="images/Sun cloud hailstone.jpg" alt=""></td>
+                    <td>24° حداکثر</td>
+                    <td>17° حداقل</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="weather-icon">
+        <img src="images/Big rain drops.jpg" alt="" id="main-icon" class="weather-image">
+        <h1 class="temperature">9°</h1>
+        <div class="location-name">Tehran</div>
+        <div class="details">
+            <div class="detail-item">
+                <img src="images/Cloud little rain.jpg" alt="humidity">
+                <h4 class="humidity-data">25%</h4>
+                <p>Humidity</p>
+            </div>
+            <div class="detail-item">
+                <img src="images/Slow winds.jpg" alt="wind">
+                <h4 class="wind-data">2 km/h</h4>
+                <p>Wind</p>
+            </div>
+        </div>    
+    </div>
+    
+
+    
+    
+    
+<script src="js/main.js">
+            const apiKey = "15491918b53254b33922b817fae93ff5";
+            const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?units=metric&q=';
+
+const searchBox = document.querySelector(".search input");
+const searchBtn = document.querySelector(".search button");
+
+const weatherImg = document.querySelector(".weather-img");
+
+async function checkWeather(city){
+  const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+
+  if(response.status == 404){
+    document.querySelector(".location-not-found").style.display = "block";
+    document.querySelector(".weather").style.display = "none";
+  }else{
+    var data = await response.json();
+
+    console.log(data);
+
+    document.querySelector(".city").innerHTML = data.name;
+    document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
+    document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+    document.querySelector(".humidity1").innerHTML = data.main.humidity + "%";
+    document.querySelector(".humidity2").innerHTML = data.main.humidity + "%";
+    document.querySelector(".humidity3").innerHTML = data.main.humidity + "%";
+    document.querySelector(".humidity4").innerHTML = data.main.humidity + "%";
+    document.querySelector(".humidity5").innerHTML = data.main.humidity + "%";
+    document.querySelector(".humidity6").innerHTML = data.main.humidity + "%";
+
+
+    document.querySelector(".wind").innerHTML = data.wind.speed +" km/h";
+    document.querySelector(".wind1").innerHTML = data.wind.speed +" km/h";
+    document.querySelector(".wind2").innerHTML = data.wind.speed +" km/h";
+    document.querySelector(".wind3").innerHTML = data.wind.speed +" km/h";
+    document.querySelector(".wind4").innerHTML = data.wind.speed +" km/h";
+    document.querySelector(".wind5").innerHTML = data.wind.speed +" km/h";
+    document.querySelector(".wind6").innerHTML = data.wind.speed +" km/h";
+
+
+    //img
+    if(data.weather[0].main == "Mist"){
+      weatherImg.src = "image/mist.png";
+    }else if(data.weather[0].main == "Rain"){
+      weatherImg.src = "image/rain.png";
+    }else if(data.weather[0].main == "Clouds"){
+      weatherImg.src = "image/clouds.png";
+    }else if(data.weather[0].main == "Clear"){
+      weatherImg.src = "image/clear.png";
+    }else if(data.weather[0].main == "Drizzle"){
+      weatherImg.src = "image/snowy.png";
+    }
+
+    document.querySelector(".icon").style.display = "block";
+    document.querySelector(".location-not-found").style.display = "none";
+  }
+
+
+}
+
+
+searchBtn.addEventListener("click" , ()=>{
+  checkWeather(searchBox.value);
+})
+
+</script>
+</body>
+</html>
+
